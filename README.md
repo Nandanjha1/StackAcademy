@@ -62,13 +62,14 @@ git clone https://github.com/Nandanjha1/stackacademy.git
 
 Install dependencies
 
-bash
-Copy
-Edit
 cd stackacademy
+
 npm install
+
 cd client
+
 npm install
+
 Create .env files for backend and frontend (with MongoDB URI, JWT secret)
 
 Run development servers
@@ -90,5 +91,6 @@ Payment integration
 
 🤝 Contributing
 Contributions, issues and feature requests are welcome!
+<br>
 Feel free to fork and submit a PR.
 
