@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, Youtube, G
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white py-10 mx-5">
+        <footer className="bg-gray-900 text-white py-10">
             <div className="mb-14 px-6 md:px-16 pb-8 border-b border-gray-700 flex flex-col md:flex-row items-center md:justify-between">
                 <h1 className="text-2xl font-bold text-lime-400 mb-4 md:mb-0">Follow Us</h1>
                 <div className="flex flex-wrap justify-center gap-4">
