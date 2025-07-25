@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Main = () => {
+const MainContent = () => {
   return (
     <div className="container mx-auto px-4 py-8">
     This is Main conent page!
@@ -9,4 +9,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default MainContent;

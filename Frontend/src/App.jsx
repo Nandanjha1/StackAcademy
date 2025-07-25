@@ -4,10 +4,10 @@ import Navbar from './components/Navbar';
 import './index.css';
 import Header from './Sections/Header';
 import Footer from './Sections/Footer';
-import Main from './Sections/main';
 import MessageForm from './Sections/MessageForm';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import MainContent from './Sections/MainContent';
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/" element={
             <>
               <Header />
-              <Main />
+              <MainContent />
               <MessageForm />
             </>
           } />
