@@ -42,13 +42,20 @@ const Login = () => {
         return <Navigate to={"/"} />;
     }
 
+    const images = [
+        "/images/header3.jpg"
+    ];
+
     return (
         <>
-            <div className="min-h-screen flex items-center justify-center bg-gray-100 mt-10 p-4">
-                <div className="w-full max-w-sm bg-white p-8 rounded-lg shadow-xl">
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">Sign In</h2>
-                    <p className="text-center text-gray-600 mb-4">Please Login To Continue</p>
-                    <p className="text-center text-gray-700 mb-8 leading-relaxed">
+            <div className="relative h-screen w-full bg-cover bg-center min-h-screen flex items-center justify-center mt-10 p-4"
+                style={{
+                    backgroundImage: `url(${images})`,
+                }}>
+                <div className="w-full max-w-lg p-8 bg-transparent rounded-lg shadow-2xl">
+                    <h2 className="text-3xl font-bold text-center text-white mb-2">Sign In</h2>
+                    <p className="text-center text-white mb-4">Please Login To Continue</p>
+                    <p className="text-center text-white mb-8 leading-relaxed">
                         "Login to StackAcademy – Access your personalized dashboard and
                         continue your tech journey."
                     </p>
@@ -56,26 +63,26 @@ const Login = () => {
                         <input
                             type="email"
                             placeholder="Email"
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full bg-transparent p-3 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
                             placeholder="Password"
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full bg-transparent p-3 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <input
                             type="password"
                             placeholder="Confirm Password"
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full bg-transparent p-3 border border-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                         <div className="flex justify-end items-center gap-2 text-sm">
-                            <p className="text-gray-600">Not Registered?</p>
+                            <p className="text-gray-100">Not Registered?</p>
                             <Link
                                 to={"/register"}
                                 className="text-blue-700 hover:underline font-medium"

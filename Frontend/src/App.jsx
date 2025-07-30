@@ -2,12 +2,14 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import './index.css';
-import Header from './Sections/Header';
+// import Header from './Sections/Header';
 import Footer from './Sections/Footer';
 import MessageForm from './Sections/MessageForm';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import MainContent from './Sections/MainContent';
+// import Home from './Sections/Home';
+import DarkVeil from './Particles';
 
 const App = () => {
   return (
@@ -18,7 +20,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={
             <>
-              <Header />
+              <div className='w-full relative top-12 h-screen'>
+                <DarkVeil />
+              </div>
+              {/* <Header /> */}
+              {/* <Home /> */}
               <MainContent />
               <MessageForm />
             </>
@@ -27,6 +33,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
 
           <Route path="/register" element={<Register />} />
+
+          <Route path="/courses" element={<MainContent />} />
 
           <Route path="*" element={
             <div className="text-center p-20 text-xl font-semibold">

@@ -52,13 +52,20 @@ const Register = () => {
         return <Navigate to={"/"} />;
     }
 
+    const images = [
+        "/images/header3.jpg"
+    ];
+
     return (
         <>
-            <div className="min-h-screen flex items-center justify-center bg-gray-100 mt-10 p-4">
-                <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-xl">
-                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">Sign Up</h2>
-                    <p className="text-center text-gray-600 mb-4">Please Sign Up To Continue</p>
-                    <p className="text-center text-gray-700 mb-8 leading-relaxed">
+            <div className="relative w-full bg-cover bg-center min-h-screen flex items-center justify-center bg-gray-100 mt-10 p-4"
+                style={{
+                    backgroundImage: `url(${images})`,
+                }}>
+                <div className="w-full max-w-xl bg-transparent p-8 rounded-lg shadow-2xl">
+                    <h2 className="text-3xl font-bold text-center text-white mb-2">Sign Up</h2>
+                    <p className="text-center text-white mb-4">Please Sign Up To Continue</p>
+                    <p className="text-center text-white mb-8 leading-relaxed">
                         "Welcome to StackAcademy – Please complete the form below to register
                         for your journey in tech world."
                     </p>
@@ -67,14 +74,14 @@ const Register = () => {
                             <input
                                 type="text"
                                 placeholder="First Name"
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                             />
                             <input
                                 type="text"
                                 placeholder="Last Name"
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                             />
@@ -83,14 +90,14 @@ const Register = () => {
                             <input
                                 type="email"
                                 placeholder="Email"
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <input
                                 type="tel"
                                 placeholder="Mobile Number"
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                             />
@@ -99,21 +106,21 @@ const Register = () => {
                             <input
                                 type="text"
                                 placeholder="Course Name"
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={course}
-                                onChange={(e) => setCourse(e.target.value)} // Corrected from setNic to setCourse
+                                onChange={(e) => setCourse(e.target.value)}
                             />
                             <input
                                 type="date"
                                 placeholder="Date of Birth"
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={dob}
                                 onChange={(e) => setDob(e.target.value)}
                             />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <select
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                                 value={gender}
                                 onChange={(e) => setGender(e.target.value)}
                             >
@@ -125,16 +132,16 @@ const Register = () => {
                             <input
                                 type="password"
                                 placeholder="Password"
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                         <div className="flex justify-end items-center gap-2 text-sm">
-                            <p className="text-gray-600">Already Registered?</p>
+                            <p className="text-gray-100">Already Registered?</p>
                             <Link
                                 to={"/login"}
-                                className="text-blue-700 hover:underline font-medium"
+                                className="text-blue-800 hover:underline font-medium"
                             >
                                 Login Now
                             </Link>
