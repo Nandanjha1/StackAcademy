@@ -8,6 +8,9 @@ import MessageForm from './Sections/MessageForm';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import MainContent from './Sections/MainContent';
+import Student from './Dashboard/Student';
+import Mentor from './Dashboard/Mentor';
+import Admin from './Dashboard/Admin';
 // import Home from './Sections/Home';
 import DarkVeil from './Particles';
 
@@ -31,10 +34,12 @@ const App = () => {
           } />
 
           <Route path="/login" element={<Login />} />
-
           <Route path="/register" element={<Register />} />
-
           <Route path="/courses" element={<MainContent />} />
+          <Route path="/sendmessage" element={<MessageForm />} />
+          <Route path='/student' element={<Student />} />
+          <Route path='/mentor' element={<Mentor />} />
+          <Route path='/admin' element={<Admin />} />
 
           <Route path="*" element={
             <div className="text-center p-20 text-xl font-semibold">
