@@ -11,7 +11,7 @@ const Register = () => {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [course, setCourse] = useState(""); // Corrected from nic to course as per your state
+    const [course, setCourse] = useState("");
     const [dob, setDob] = useState("");
     const [gender, setGender] = useState("");
     const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ const Register = () => {
         try {
             await axios
                 .post(
-                    "http://localhost:4000/api/v1/user/patient/register",
+                    "http://localhost:4000/api/v1/user/student/register",
                     { firstName, lastName, email, phone, course, dob, gender, password },
                     {
                         withCredentials: true,
