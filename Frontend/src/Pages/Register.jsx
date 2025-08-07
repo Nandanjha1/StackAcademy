@@ -69,7 +69,7 @@ const Register = () => {
                         "Welcome to StackAcademy – Please complete the form below to register
                         for your journey in tech world."
                     </p>
-                    <form onSubmit={handleRegistration} className="space-y-6">
+                    <form onSubmit={handleRegistration} className="space-y-6" autocomplete="off">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <input
                                 type="text"
@@ -120,7 +120,7 @@ const Register = () => {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <select
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={gender}
                                 onChange={(e) => setGender(e.target.value)}
                             >
@@ -135,6 +135,7 @@ const Register = () => {
                                 className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                autocomplete="new-password"
                             />
                         </div>
                         <div className="flex justify-end items-center gap-2 text-sm">

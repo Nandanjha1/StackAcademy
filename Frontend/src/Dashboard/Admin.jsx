@@ -27,8 +27,8 @@ const AdminPanel = () => (
                     <p className="text-3xl font-bold">15</p>
                 </div>
                 <div className="bg-orange-500 p-6 rounded-xl text-white">
-                    <h3 className="text-lg font-semibold mb-2">Completed Courses</h3>
-                    <p className="text-3xl font-bold">3,480</p>
+                    <h3 className="text-lg font-semibold mb-2">Total Revenue</h3>
+                    <p className="text-3xl font-bold">₹3,480</p>
                 </div>
             </div>
 

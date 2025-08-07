@@ -13,13 +13,13 @@ const CourseCard = ({ course }) => {
       />
 
       {/* Course Title */}
-      <h3 className="text-2xl font-bold text-white mb-2">{course.title}</h3>
+      <h3 className="text-2xl font-bold text-black mb-2">{course.title}</h3>
 
       {/* Course Description */}
-      <p className="text-gray-300 text-sm mb-4 line-clamp-3">{course.description}</p>
+      <p className="text-gray-800 text-sm mb-4 line-clamp-3">{course.description}</p>
 
       {/* Course Details (e.g., Duration, Instructor) */}
-      <div className="flex justify-between items-center text-gray-400 text-xs mb-4">
+      <div className="flex justify-between items-center text-gray-600 text-xs mb-4">
         <span><i className="lucide lucide-clock mr-1"></i> {course.duration}</span>
         <span><i className="lucide lucide-user mr-1"></i> {course.instructor}</span>
       </div>
@@ -41,10 +41,10 @@ const CoursesSection = () => {
       id: 1,
       title: "Introduction to React",
       description: "Learn the fundamentals of React.js, including components, state, props, and hooks. Build your first interactive web application.",
-      imageUrl: "https://placehold.co/400x200/61DAFB/000000?text=React+Course",
+      imageUrl: "../images/react.png",
       duration: "8 Weeks",
-      instructor: "Jane Doe",
-      price: "$199"
+      instructor: "Nandan Kumar",
+      price: "₹49"
     },
     {
       id: 2,
@@ -52,8 +52,8 @@ const CoursesSection = () => {
       description: "Dive deep into modern JavaScript features, asynchronous programming, ES6+, and design patterns for robust applications.",
       imageUrl: "https://placehold.co/400x200/F7DF1E/000000?text=JS+Course",
       duration: "6 Weeks",
-      instructor: "John Smith",
-      price: "$149"
+      instructor: "Nandan Kumar",
+      price: "₹39"
     },
     {
       id: 3,
@@ -61,8 +61,8 @@ const CoursesSection = () => {
       description: "Master the utility-first CSS framework, Tailwind CSS, to rapidly build beautiful and responsive user interfaces.",
       imageUrl: "https://placehold.co/400x200/38B2AC/000000?text=Tailwind+CSS",
       duration: "4 Weeks",
-      instructor: "Alice Johnson",
-      price: "$99"
+      instructor: "Nandan Kumar",
+      price: "₹9"
     },
     {
       id: 4,
@@ -70,17 +70,17 @@ const CoursesSection = () => {
       description: "Build powerful backend APIs using Node.js and the Express framework. Learn about routing, middleware, and database integration.",
       imageUrl: "https://placehold.co/400x200/68A063/000000?text=Node.js+API",
       duration: "10 Weeks",
-      instructor: "Bob Williams",
-      price: "$249"
+      instructor: "Nandan Kumar",
+      price: "₹29"
     },
     {
       id: 5,
       title: "Python for Data Science",
       description: "An extensive course covering Python basics, data manipulation with Pandas, numerical computing with NumPy, and data visualization.",
-      imageUrl: "https://placehold.co/400x200/3776AB/FFD43B?text=Python+DS",
+      imageUrl: "../images/python.png",
       duration: "12 Weeks",
-      instructor: "Sarah Green",
-      price: "$299"
+      instructor: "Nandan Kumar",
+      price: "₹99"
     },
     {
       id: 6,
@@ -88,8 +88,8 @@ const CoursesSection = () => {
       description: "Understand the core principles of User Interface (UI) and User Experience (UX) design to create intuitive and engaging products.",
       imageUrl: "https://placehold.co/400x200/FF5733/FFFFFF?text=UI/UX+Design",
       duration: "7 Weeks",
-      instructor: "David Lee",
-      price: "$179"
+      instructor: "Nandan Kumar",
+      price: "₹79"
     }
   ];
 
