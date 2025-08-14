@@ -1,5 +1,8 @@
 import React from 'react';
 import { motion } from "motion/react";
+// import courseDetails from './Course/courseDetails';
+import { useNavigate } from 'react-router-dom';
+import courses from '../data/courses';
 
 // Animation variants
 const cardVariants = {
@@ -57,7 +60,12 @@ const card = {
 
 // Animated Course Card
 function AnimatedCourseCard({ course, i, hueA, hueB }) {
+  const navigate = useNavigate();
   const background = `linear-gradient(306deg, ${hue(hueA)}, ${hue(hueB)})`;
+
+  const courseDetails = () => {
+    navigate(`/courseDetails/${course.id}`);
+  };
 
   return (
     <motion.div
@@ -67,8 +75,8 @@ function AnimatedCourseCard({ course, i, hueA, hueB }) {
       whileInView="onscreen"
       viewport={{ amount: 0.8 }}
     >
-      <div style={{ ...splash, background }} />
-      <motion.div style={card} variants={cardVariants} className="card">
+      <div style={{ ...splash, background, pointerEvents: "none", zIndex: 0  }} />
+      <motion.div style={{ ...card, zIndex: 1 }} variants={cardVariants} className="card">
         <img
           src={course.imageUrl || `https://placehold.co/400x200/2a2a2a/ffffff?text=${course.title.replace(/\s/g, '+')}`}
           alt={course.title}
@@ -82,10 +90,15 @@ function AnimatedCourseCard({ course, i, hueA, hueB }) {
           <span>👨‍🏫 {course.instructor}</span>
         </div>
         <div className="flex justify-between items-center mt-auto w-full">
-          <span className="text-xl font-semibold text-green-400">{course.price}</span>
-          <button className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white font-semibold py-2 px-5 rounded-full shadow-lg hover:from-purple-700 hover:to-indigo-800 transition-all duration-300">
+          <span className="text-xl font-semibold text-green-400 mb-6">{course.price}</span>
+          <button
+            type="button"
+            onClick={() => navigate(`/courseDetails/${course.id}`)}
+            className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white font-semibold py-1 px-4 rounded-full shadow-lg hover:from-purple-700 hover:to-indigo-800 transition-all duration-300 relative z-10"
+          >
             Learn More
           </button>
+
         </div>
       </motion.div>
     </motion.div>
@@ -93,7 +106,7 @@ function AnimatedCourseCard({ course, i, hueA, hueB }) {
 }
 
 const courseHues = [
-  [340, 10],
+  [40, 10],
   [20, 40],
   [60, 90],
   [80, 120],
@@ -102,65 +115,9 @@ const courseHues = [
 ];
 
 const CoursesSection = () => {
-  const courses = [
-    {
-      id: 1,
-      title: "Introduction to React",
-      description: "Learn the fundamentals of React.js, including components, state, props, and hooks. Build your first interactive web application.",
-      imageUrl: "../images/react.png",
-      duration: "8 Weeks",
-      instructor: "Nandan Kumar",
-      price: "₹49"
-    },
-    {
-      id: 2,
-      title: "Advanced JavaScript",
-      description: "Dive deep into modern JavaScript features, asynchronous programming, ES6+, and design patterns for robust applications.",
-      imageUrl: "https://placehold.co/400x200/F7DF1E/000000?text=JS+Course",
-      duration: "6 Weeks",
-      instructor: "Nandan Kumar",
-      price: "₹39"
-    },
-    {
-      id: 3,
-      title: "Tailwind CSS Masterclass",
-      description: "Master the utility-first CSS framework, Tailwind CSS, to rapidly build beautiful and responsive user interfaces.",
-      imageUrl: "https://placehold.co/400x200/38B2AC/000000?text=Tailwind+CSS",
-      duration: "4 Weeks",
-      instructor: "Nandan Kumar",
-      price: "₹9"
-    },
-    {
-      id: 4,
-      title: "Node.js & Express API",
-      description: "Build powerful backend APIs using Node.js and the Express framework. Learn about routing, middleware, and database integration.",
-      imageUrl: "https://placehold.co/400x200/68A063/000000?text=Node.js+API",
-      duration: "10 Weeks",
-      instructor: "Nandan Kumar",
-      price: "₹29"
-    },
-    {
-      id: 5,
-      title: "Python for Data Science",
-      description: "An extensive course covering Python basics, data manipulation with Pandas, numerical computing with NumPy, and data visualization.",
-      imageUrl: "../images/python.png",
-      duration: "12 Weeks",
-      instructor: "Nandan Kumar",
-      price: "₹99"
-    },
-    {
-      id: 6,
-      title: "UI/UX Design Principles",
-      description: "Understand the core principles of User Interface (UI) and User Experience (UX) design to create intuitive and engaging products.",
-      imageUrl: "https://placehold.co/400x200/FF5733/FFFFFF?text=UI/UX+Design",
-      duration: "7 Weeks",
-      instructor: "Nandan Kumar",
-      price: "₹79"
-    }
-  ];
 
   return (
-    <section className="relative z-10 py-16 px-4 md:px-8 lg:px-16 text-white min-h-screen flex flex-col items-center justify-center">
+    <section className="relative z-10 py-32 px-4 md:px-8 lg:px-16 text-white min-h-screen flex flex-col items-center justify-center">
       <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 drop-shadow-lg">
         Explore Our Courses
       </h2>

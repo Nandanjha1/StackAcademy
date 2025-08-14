@@ -13,6 +13,7 @@ import Mentor from './Dashboard/Mentor';
 import Admin from './Dashboard/Admin';
 // import Home from './Sections/Home';
 import DarkVeil from './Particles';
+import CourseDetails from './Sections/Course/CourseDetails';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path='/courseDetails/:courseId' element={<CourseDetails />} />
           <Route path="/courses" element={<MainContent />} />
           <Route path="/sendmessage" element={<MessageForm />} />
           <Route path='/student' element={<Student />} />
