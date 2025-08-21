@@ -11,6 +11,7 @@ import MainContent from './Sections/MainContent';
 import Student from './Dashboard/Student';
 import Mentor from './Dashboard/Mentor';
 import Admin from './Dashboard/Admin';
+import CodeEditor from './Dashboard/CodeEditor';
 // import Home from './Sections/Home';
 import DarkVeil from './Particles';
 import CourseDetails from './Sections/Course/CourseDetails';
@@ -42,6 +43,7 @@ const App = () => {
           <Route path='/student' element={<Student />} />
           <Route path='/mentor' element={<Mentor />} />
           <Route path='/admin' element={<Admin />} />
+          <Route path='/codeEditor' element={<CodeEditor />} />
 
           <Route path="*" element={
             <div className="text-center p-20 text-xl font-semibold">
