@@ -19,18 +19,19 @@ function CodeEditor() {
         setOutput("");
 
         try {
-            const res = await fetch("http://localhost:3000/run", {
+            const res = await fetch("http://localhost:4000/api/run", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ language, code, input }),
             });
 
             const data = await res.json();
-            if (data.ok) {
-                setOutput(data.stdout || "✅ No Output");
+            if (res.ok) {
+                setOutput(data.stdout ? data.stdout : "✅ No Output");
             } else {
-                setOutput(data.stderr || "❌ Error occurred");
+                setOutput(data.stderr ? "❌ " + data.stderr : "❌ Error occurred");
             }
+
         } catch (err) {
             setOutput("❌ Server error: " + err.message);
         } finally {
@@ -73,7 +74,7 @@ function CodeEditor() {
                     }}
                 />
             </div>
-            <div>
+            <div className="flex flex-col sm:flex-row justify-between items-center mt-3 gap-2">
                 {/* Toggle Custom Input */}
                 <button
                     onClick={() => setShowInput(!showInput)}
@@ -97,7 +98,7 @@ function CodeEditor() {
                 <button
                     onClick={runCode}
                     disabled={loading}
-                    className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 disabled:opacity-50 float-end"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 disabled:opacity-50"
                 >
                     {loading ? "Running..." : "Run Code"}
                 </button>

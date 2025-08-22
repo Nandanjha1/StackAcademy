@@ -3,6 +3,7 @@ import express from "express";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import codeEditorApi from "./models/codeEditorApi.js";
 // import fileUpload from "express-fileupload";
 // import { errorMiddleware } from "./middlewares/error.js";
 // import messageRouter from "./router/messageRouter.js";
@@ -23,7 +24,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use("/api", codeEditorApi);
 app.post('/api/v1/user/student/register', async (req, res) => {
     console.log("Received user data: ", req.body);
     try {
