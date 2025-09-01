@@ -5,6 +5,7 @@ import CodingTab from "./CodingTab";
 import QuizzesTab from "./Quizze";
 import Home from "./Home";
 import MainContent from "@/Sections/MainContent";
+import CodeEditor from "./CodeEditor";
 
 const Sidebar = ({ currentUser }) => {
     const [activeTab, setActiveTab] = useState("dashboard");
@@ -22,6 +23,8 @@ const Sidebar = ({ currentUser }) => {
                 return <CodingTab />;
             case "quizzes":
                 return <QuizzesTab />;
+            case "codeEditor":
+                return <CodeEditor />;
             default:
                 return (
                     <div className="text-center p-20 text-xl font-semibold">
@@ -71,6 +74,13 @@ const Sidebar = ({ currentUser }) => {
                     >
                         <Trophy className="h-5 w-5" />
                         <span>Quizzes</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('codeEditor')}
+                        className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition duration-300 ${activeTab === 'codeEditor' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                    >
+                        <Code className="h-5 w-5" />
+                        <span>Coding Compiler</span>
                     </button>
                 </nav>
             </div>

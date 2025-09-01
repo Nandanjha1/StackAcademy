@@ -40,9 +40,9 @@ function CodeEditor() {
     };
 
     return (
-        <div className="container mx-auto mt-20 my-10 px-4 flex flex-col gap-4">
+        <div className="container mx-auto px-4 flex flex-col gap-4">
             {/* Header + Language Selector */}
-            <div className="pt-2 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
                 <h2 className="text-xl font-semibold">Code Editor</h2>
                 <select
                     className="rounded p-2 border border-gray-400 text-sm"

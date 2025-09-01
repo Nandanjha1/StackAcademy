@@ -1,19 +1,17 @@
-import axios from "axios";
 import React, { useContext, useState } from "react";
+import axios from "axios";
 import { toast } from "react-toastify";
-import { Context } from "../main";
+import { Context } from "../main"; // Assuming your context is exported from 'main'
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
-const Register = () => {
+const StudentRegister = () => {
+    // Assuming the context is set up to provide these values
     const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [course, setCourse] = useState("");
-    const [dob, setDob] = useState("");
-    const [gender, setGender] = useState("");
     const [password, setPassword] = useState("");
 
     const navigateTo = useNavigate();
@@ -21,128 +19,99 @@ const Register = () => {
     const handleRegistration = async (e) => {
         e.preventDefault();
         try {
-            await axios
-                .post(
-                    "http://localhost:4000/api/v1/user/student/register",
-                    { firstName, lastName, email, phone, course, dob, gender, password },
-                    {
-                        withCredentials: true,
-                        headers: { "Content-Type": "application/json" },
-                    }
-                )
-                .then((res) => {
-                    toast.success(res.data.message);
-                    setIsAuthenticated(true);
-                    navigateTo("/");
-                    setFirstName("");
-                    setLastName("");
-                    setEmail("");
-                    setPhone("");
-                    setCourse("");
-                    setDob("");
-                    setGender("");
-                    setPassword("");
-                });
+            const { data } = await axios.post(
+                "/api/v1/auth/student/register",
+                // Only sending the fields required by the backend
+                { firstName, lastName, email, phone, password },
+                {
+                    withCredentials: true,
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
+            toast.success(data.message);
+            setIsAuthenticated(true);
+            navigateTo("/");
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPhone("");
+            setPassword("");
         } catch (error) {
             toast.error(error.response.data.message);
         }
     };
 
     if (isAuthenticated) {
-        return <Navigate to={"/"} />;
+        return <Navigate to={"/student"} />;
     }
-
-    const images = [
-        "/images/header3.jpg"
-    ];
 
     return (
         <>
-            <div className="relative w-full bg-cover bg-center min-h-screen flex items-center justify-center bg-gray-100 mt-10 p-4"
+            <div
+                className="relative w-full bg-cover bg-center min-h-screen flex items-center justify-center bg-gray-100 p-4"
                 style={{
-                    backgroundImage: `url(${images})`,
-                }}>
-                <div className="w-full max-w-xl bg-transparent p-8 rounded-lg shadow-2xl">
+                    backgroundImage: `url(/images/header3.jpg)`, // Using the image path from your code
+                }}
+            >
+                <div className="w-full max-w-xl bg-black bg-opacity-50 p-8 rounded-lg shadow-2xl">
                     <h2 className="text-3xl font-bold text-center text-white mb-2">Sign Up</h2>
-                    <p className="text-center text-white mb-4">Please Sign Up To Continue</p>
+                    <p className="text-center text-white mb-4">Create Your Student Account</p>
                     <p className="text-center text-white mb-8 leading-relaxed">
-                        "Welcome to StackAcademy – Please complete the form below to register
-                        for your journey in tech world."
+                        "Welcome to StackAcademy – Join our community and start your journey in the tech world."
                     </p>
-                    <form onSubmit={handleRegistration} className="space-y-6" autocomplete="off">
+                    <form onSubmit={handleRegistration} className="space-y-6" autoComplete="off">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <input
                                 type="text"
                                 placeholder="First Name"
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent text-white placeholder-gray-300 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
+                                required
                             />
                             <input
                                 type="text"
                                 placeholder="Last Name"
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent text-white placeholder-gray-300 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
+                                required
                             />
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <input
                                 type="email"
                                 placeholder="Email"
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent text-white placeholder-gray-300 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                             <input
                                 type="tel"
                                 placeholder="Mobile Number"
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="p-3 border bg-transparent text-white placeholder-gray-300 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
+                                required
                             />
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <input
-                                type="text"
-                                placeholder="Course Name"
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                value={course}
-                                onChange={(e) => setCourse(e.target.value)}
-                            />
-                            <input
-                                type="date"
-                                placeholder="Date of Birth"
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                value={dob}
-                                onChange={(e) => setDob(e.target.value)}
-                            />
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <select
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                value={gender}
-                                onChange={(e) => setGender(e.target.value)}
-                            >
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
+                        <div>
                             <input
                                 type="password"
                                 placeholder="Password"
-                                className="p-3 border bg-transparent border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full p-3 border bg-transparent text-white placeholder-gray-300 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                autocomplete="new-password"
+                                autoComplete="new-password"
+                                required
                             />
                         </div>
                         <div className="flex justify-end items-center gap-2 text-sm">
-                            <p className="text-gray-100">Already Registered?</p>
+                            <p className="text-gray-300">Already Registered?</p>
                             <Link
                                 to={"/login"}
-                                className="text-blue-800 hover:underline font-medium"
+                                className="text-blue-400 hover:underline font-medium"
                             >
                                 Login Now
                             </Link>
@@ -162,4 +131,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default StudentRegister;

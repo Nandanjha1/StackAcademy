@@ -52,6 +52,33 @@ const courses = [
     duration: "7 Weeks",
     instructor: "Nandan Kumar",
     price: "₹79"
+  },
+  {
+    id: 7,
+    title: "Bootstrap Basic to Advance",
+    description: "An extensive course covering Python basics, data manipulation with Pandas, numerical computing with NumPy, and data visualization.",
+    imageUrl: "https://placehold.co/400x200/000033/FFFFFF?text=Bootstrap",
+    duration: "12 Weeks",
+    instructor: "Nandan Kumar",
+    price: "₹19"
+  },
+  {
+    id: 8,
+    title: "C++ Basic to Advance",
+    description: "An extensive course covering Python basics, data manipulation with Pandas, numerical computing with NumPy, and data visualization.",
+    imageUrl: "https://placehold.co/400x200/555733/FFFFFF?text=C+Plus+Plus",
+    duration: "12 Weeks",
+    instructor: "Nandan Kumar",
+    price: "₹29"
+  },
+  {
+    id: 9,
+    title: "Java Full Course",
+    description: "An extensive course covering Java basics, Java advance, Practice questions in Java.",
+    imageUrl: "https://placehold.co/400x200/005733/ffffff?text=Java+Full+Course",
+    duration: "12 Weeks",
+    instructor: "Nandan Kumar",
+    price: "₹49"
   }
 ];
 
