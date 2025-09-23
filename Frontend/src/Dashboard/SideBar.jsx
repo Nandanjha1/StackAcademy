@@ -3,9 +3,10 @@ import { BookOpen, User, Code, Trophy } from "lucide-react";
 import MyCoursesTab from "./MyCourseTab";
 import CodingTab from "./CodingTab";
 import QuizzesTab from "./Quizze";
-import Home from "./Home";
+// import Home from "./Home";
 import MainContent from "@/Sections/MainContent";
 import CodeEditor from "./CodeEditor";
+import StudentDashboard from "./StudentDashboard";
 
 const Sidebar = ({ currentUser }) => {
     const [activeTab, setActiveTab] = useState("dashboard");
@@ -14,7 +15,7 @@ const Sidebar = ({ currentUser }) => {
     const renderActiveTab = () => {
         switch (activeTab) {
             case "dashboard":
-                return <Home />;
+                return <StudentDashboard />;
             case "courses":
                 return <MainContent />;
             case "mycourses":

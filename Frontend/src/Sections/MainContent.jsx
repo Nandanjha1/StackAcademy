@@ -117,7 +117,7 @@ const courseHues = [
 const CoursesSection = () => {
 
   return (
-    <section className="relative z-10 py-32 px-4 md:px-8 lg:px-16 text-white min-h-screen flex flex-col items-center justify-center">
+    <section className="relative z-10 pt-20 pb-32 px-4 md:px-8 lg:px-16 text-white min-h-screen flex flex-col items-center justify-center">
       <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 drop-shadow-lg">
         Explore Our Courses
       </h2>
