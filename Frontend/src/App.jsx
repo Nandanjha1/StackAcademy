@@ -13,7 +13,8 @@ import Admin from '@/Dashboard/Admin';
 import CodeEditor from '@/Dashboard/CodeEditor';
 import DarkVeil from '@/Particles';
 import CourseDetails from '@/Sections/Course/CourseDetails';
-import ProtectedRoute from '@/components/ProtectedRoute'; // <-- IMPORT THE NEW COMPONENT
+import ProtectedRoute from '@/components/ProtectedRoute';
+import CourseManagement from './Dashboard/CourseManagement';
 
 const App = () => {
   const location = useLocation();
@@ -49,6 +50,7 @@ const App = () => {
           <Route path='/courseDetails/:courseId' element={<CourseDetails />} />
           <Route path="/courses" element={<MainContent />} />
           <Route path="/sendmessage" element={<MessageForm />} />
+          <Route path="/admin/courses" element={<CourseManagement />} />
 
           {/* --- PROTECTED ROUTES --- */}
           <Route 

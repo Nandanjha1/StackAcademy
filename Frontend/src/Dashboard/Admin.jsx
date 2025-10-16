@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Plus, User, X } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../main.jsx";
 import Navbar from "./Navbar";
 
 const AdminPanel = () => {
-    const { user } = useContext(Context); // Get the logged-in admin's info
+    const { user } = useContext(Context);
+    const navigate = useNavigate(); // Initialize navigate hook
 
     // State for dashboard data
     const [stats, setStats] = useState({ studentCount: 0, mentorCount: 0, courseCount: 0, totalRevenue: 0 });
@@ -21,7 +23,7 @@ const AdminPanel = () => {
         email: "",
         phone: "",
         password: "",
-        role: "Mentor", // Role is fixed
+        role: "Mentor",
     });
 
     // Function to fetch data from the backend
@@ -52,8 +54,8 @@ const AdminPanel = () => {
         try {
             const { data } = await axios.post("/api/v1/user/admin/register", mentorData, { withCredentials: true });
             toast.success(data.message);
-            setShowModal(false); // Close modal on success
-            fetchDashboardData(); // Refresh the dashboard data to show the new mentor
+            setShowModal(false);
+            fetchDashboardData();
         } catch (error) {
             toast.error(error.response?.data?.message || "Failed to add mentor.");
         }
@@ -68,12 +70,21 @@ const AdminPanel = () => {
             <Navbar />
             <div className="space-y-8">
                 <h2 className="text-3xl font-bold text-gray-800">Welcome, {user.firstName}!</h2>
-                
+
                 {/* Stats Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div className="bg-blue-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Students</h3><p className="text-3xl font-bold">{stats.studentCount}</p></div>
                     <div className="bg-green-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Mentors</h3><p className="text-3xl font-bold">{stats.mentorCount}</p></div>
-                    <div className="bg-purple-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Courses</h3><p className="text-3xl font-bold">{stats.courseCount}</p></div>
+
+                    {/* Dynamic Course Card */}
+                    <div
+                        className="bg-purple-500 p-6 rounded-xl text-white shadow-lg cursor-pointer transition-transform transform hover:scale-105"
+                        onClick={() => navigate("/admin/courses")}
+                    >
+                        <h3 className="font-semibold">Total Courses</h3>
+                        <p className="text-3xl font-bold">{stats.courseCount}</p>
+                    </div>
+
                     <div className="bg-orange-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Revenue</h3><p className="text-3xl font-bold">₹{stats.totalRevenue}</p></div>
                 </div>
 
@@ -106,7 +117,7 @@ const AdminPanel = () => {
                     <h3 className="text-xl font-bold text-gray-800 mb-4">Recent Activity</h3>
                     <div className="space-y-3">
                         {lists.recentActivity.map((activity) => (
-                             <div key={activity._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div key={activity._id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                                 <div className="flex items-center space-x-3">
                                     <User className={`h-6 w-6 ${activity.role === 'Student' ? 'text-blue-500' : activity.role === 'Mentor' ? 'text-green-500' : 'text-purple-500'}`} />
                                     <div>
@@ -145,4 +156,3 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
-

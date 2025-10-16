@@ -3,7 +3,6 @@ import { BookOpen, User, Code, Trophy } from "lucide-react";
 import MyCoursesTab from "./MyCourseTab";
 import CodingTab from "./CodingTab";
 import QuizzesTab from "./Quizze";
-// import Home from "./Home";
 import MainContent from "@/Sections/MainContent";
 import CodeEditor from "./CodeEditor";
 import StudentDashboard from "./StudentDashboard";

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Context } from "@/main.jsx"; // Use absolute path alias
+import { Context } from "@/main.jsx";
 import { Link, Navigate } from "react-router-dom";
-import VerifyOtp from "@/Pages/VerifyOtp.jsx"; // Use absolute path alias
+import VerifyOtp from "@/Pages/VerifyOtp.jsx";
 
 const Login = () => {
     const { isAuthenticated, setIsAuthenticated, user, setUser } = useContext(Context);
@@ -66,6 +66,10 @@ const Login = () => {
                     </div>
                     <div className="flex justify-center items-center">
                         <button type="submit" className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">Login</button>
+                    </div>
+                    <div className="flex justify-center items-center">
+                        <button onClick={()=>window.open("/api/v1/auth/google")} className="w-full px-6 py-3 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition" variant='outline'>
+                        Login with Google</button>
                     </div>
                 </form>
             </div>

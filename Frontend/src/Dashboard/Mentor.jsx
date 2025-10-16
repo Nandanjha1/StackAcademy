@@ -1,11 +1,14 @@
-// Mentor.jsx
-import React, { useState } from 'react';
-import { Users, Calendar, MessageSquare, Clock, Trophy } from 'lucide-react';
+import React, { useContext, useState } from 'react';
+import { Users, Calendar, MessageSquare, Clock, Trophy, User } from 'lucide-react';
+import { Context } from '../main.jsx';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Mentor = () => {
+    const { user } = useContext(Context);
     // In a real application, this data would be fetched from a database
     const [mentorData, setMentorData] = useState({
-        name: "Jane Doe",
         specialization: "Full-Stack Development",
         bio: "Experienced developer with a passion for mentoring new talent. Specializing in React, Node.js, and database design.",
         mentees: [
@@ -24,23 +27,56 @@ const Mentor = () => {
             quizzesCompleted: 25,
         }
     });
+    const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
+    const navigateTo = useNavigate();
+    const handleLogout = async () => {
+        try {
+            await axios.get("/api/v1/auth/logout", { withCredentials: true });
+            toast.success("Logged out successfully!");
+            setIsAuthenticated(false);
+            setUser({}); // Clear the user object
+            navigateTo("/"); // Redirect to home page
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Logout failed.");
+            setIsAuthenticated(false); // Still log out on frontend even if API fails
+            setUser({});
+            navigateTo("/");
+        }
+    };
 
     return (
         <div className="p-8 space-y-8">
             {/* Mentor Profile Section */}
-            <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
-                <div className="flex-shrink-0">
-                    {/* Placeholder for mentor's profile picture */}
-                    <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm">
-                        
+            <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center md:items-start md:justify-between space-y-4 md:space-y-0">
+
+                {/* Left Section: Profile + Details */}
+                <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <div className="flex-shrink-0">
+                        {/* Placeholder for mentor's profile picture */}
+                        <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm">
+                            <Users />
+                        </div>
+                    </div>
+                    <div className="text-center md:text-left">
+                        <h1 className="text-3xl font-bold text-gray-900">
+                            {user.firstName} {user.lastName}!
+                        </h1>
+                        <p className="text-lg text-blue-600">{mentorData.specialization}</p>
+                        <p className="mt-2 text-gray-600 max-w-2xl">{mentorData.bio}</p>
                     </div>
                 </div>
-                <div className="text-center md:text-left">
-                    <h1 className="text-3xl font-bold text-gray-900">{mentorData.name}</h1>
-                    <p className="text-lg text-blue-600">{mentorData.specialization}</p>
-                    <p className="mt-2 text-gray-600 max-w-2xl">{mentorData.bio}</p>
+
+                {/* Right Section: Logout Button */}
+                <div className="w-full md:w-auto flex justify-center md:justify-end">
+                    <button
+                        onClick={handleLogout}
+                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
+                    >
+                        Logout
+                    </button>
                 </div>
             </div>
+
 
             {/* Stats Dashboard */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -111,8 +147,8 @@ const Mentor = () => {
                                 <div className="text-right">
                                     <p className="font-semibold text-gray-800">Progress: {mentee.progress}%</p>
                                     <div className="w-24 bg-gray-200 rounded-full h-2 mt-1">
-                                        <div 
-                                            className="bg-green-500 h-2 rounded-full" 
+                                        <div
+                                            className="bg-green-500 h-2 rounded-full"
                                             style={{ width: `${mentee.progress}%` }}
                                         ></div>
                                     </div>

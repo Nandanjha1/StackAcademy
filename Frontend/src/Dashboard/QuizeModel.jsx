@@ -46,6 +46,7 @@ const QuizModal = ({ activeQuiz, setActiveQuiz }) => {
                     <div>
                         <p className="mb-4 font-semibold">Quiz Complete!</p>
                         <p className="mb-4 text-2xl font-bold text-center">Your Score: {quizScore} / {quizQuestions.length}</p>
+                        <p className="mb-4 text-xl font-bold text-center text-indigo-500">Your Status: {(quizScore>=(quizQuestions.length*3)/4)? "Pass" : "Fail"}</p>
                         <button
                             className="bg-green-600 text-white px-4 py-2 rounded-lg"
                             onClick={() => {

@@ -32,6 +32,8 @@ const userSchema = new mongoose.Schema({
     minLength: [8, "Password must contain at least 8 characters!"],
     select: false, // Don't send password in API responses
   },
+  googleId: { type: String},
+  avatar: { type: String},
   role: {
     type: String,
     required: true,
