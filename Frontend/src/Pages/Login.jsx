@@ -67,11 +67,13 @@ const Login = () => {
                     <div className="flex justify-center items-center">
                         <button type="submit" className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">Login</button>
                     </div>
-                    <div className="flex justify-center items-center">
-                        <button onClick={()=>window.open("/api/v1/auth/google")} className="w-full px-6 py-3 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition" variant='outline'>
-                        Login with Google</button>
-                    </div>
                 </form>
+                <div>
+                    <button class="flex items-center justify-center w-full mt-2 px-6 py-3 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 transition border" onclick="window.open('/api/v1/auth/google')">
+                        <img src="/public/images/Google_favicon.svg" alt="Google icon" class="w-4 h-4 mr-2" />
+                        Login with Google
+                    </button>
+                </div>
             </div>
         </div>
     );

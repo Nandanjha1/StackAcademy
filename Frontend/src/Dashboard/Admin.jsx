@@ -11,7 +11,7 @@ const AdminPanel = () => {
     const navigate = useNavigate(); // Initialize navigate hook
 
     // State for dashboard data
-    const [stats, setStats] = useState({ studentCount: 0, mentorCount: 0, courseCount: 0, totalRevenue: 0 });
+    const [stats, setStats] = useState({ studentCount: 0, mentorCount: 0, courseCount: 0, totalRevenue: 0, totalMessage: 0 });
     const [lists, setLists] = useState({ mentors: [], recentActivity: [] });
     const [loading, setLoading] = useState(true);
 
@@ -86,6 +86,8 @@ const AdminPanel = () => {
                     </div>
 
                     <div className="bg-orange-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Revenue</h3><p className="text-3xl font-bold">₹{stats.totalRevenue}</p></div>
+                    <div className="bg-indigo-800 p-6 rounded-xl text-white shadow-lg cursor-pointer transition-transform transform hover:scale-105" onClick={() => navigate("/admin/messages")}><h3 className="font-semibold">Total Messages</h3><p className="text-3xl font-bold">{stats.totalMessage}</p>
+                    </div>
                 </div>
 
                 {/* Manage Mentors Section */}

@@ -6,7 +6,7 @@ import cors from "cors";
 import codeEditorApi from "./models/codeEditorApi.js";
 // import fileUpload from "express-fileupload";
 import { errorMiddleware } from "./middlewares/error.js";
-// import messageRouter from "./router/messageRouter.js";
+import messageRouter from "./routes/messageRouter.js";
 import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoutes.js";
 
@@ -27,11 +27,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", codeEditorApi);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/message", messageRouter);
 
 
 app.post('/test', (req, res) => {
-    console.log("Test route body:", req.body);
-    res.send("Logged");
+  console.log("Test route body:", req.body);
+  res.send("Logged");
 });
 
 // app.use(
@@ -40,7 +41,6 @@ app.post('/test', (req, res) => {
 //     tempFileDir: "/tmp/",
 //   })
 //  );
-// app.use("/api/v1/message", messageRouter);
 
 dbConnection();
 
