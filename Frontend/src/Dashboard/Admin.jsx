@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Plus, User, X } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../main.jsx";
@@ -8,7 +8,7 @@ import Navbar from "./Navbar";
 
 const AdminPanel = () => {
     const { user } = useContext(Context);
-    const navigate = useNavigate(); // Initialize navigate hook
+    const navigate = useNavigate();
 
     // State for dashboard data
     const [stats, setStats] = useState({ studentCount: 0, mentorCount: 0, courseCount: 0, totalRevenue: 0, totalMessage: 0 });
@@ -72,7 +72,7 @@ const AdminPanel = () => {
                 <h2 className="text-3xl font-bold text-gray-800">Welcome, {user.firstName}!</h2>
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                     <div className="bg-blue-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Students</h3><p className="text-3xl font-bold">{stats.studentCount}</p></div>
                     <div className="bg-green-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Mentors</h3><p className="text-3xl font-bold">{stats.mentorCount}</p></div>
 
@@ -86,7 +86,10 @@ const AdminPanel = () => {
                     </div>
 
                     <div className="bg-orange-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Revenue</h3><p className="text-3xl font-bold">₹{stats.totalRevenue}</p></div>
-                    <div className="bg-indigo-800 p-6 rounded-xl text-white shadow-lg cursor-pointer transition-transform transform hover:scale-105" onClick={() => navigate("/admin/messages")}><h3 className="font-semibold">Total Messages</h3><p className="text-3xl font-bold">{stats.totalMessage}</p>
+
+                    <div className="bg-indigo-800 p-6 rounded-xl text-white shadow-lg cursor-pointer transition-transform transform hover:scale-105" onClick={() => navigate("/admin/messages")}>
+                        <h3 className="font-semibold">Total Messages</h3>
+                        <p className="text-3xl font-bold">{stats.totalMessage}</p>
                     </div>
                 </div>
 

@@ -1,13 +1,11 @@
 import { User } from "../models/userSchema.js";
-import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js"; // We'll create this later
-import ErrorHandler from "../middlewares/error.js"; // And this
+import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
+import ErrorHandler from "../middlewares/error.js";
 import { sendToken } from "../utils/jwtToken.js";
 import { sendOtp } from "../utils/sendOtp.js";
 
 // Student Registration
 export const registerStudent = catchAsyncErrors(async (req, res, next) => {
-    console.log("Student registration route hit!");
-    console.log("Received data from frontend:", req.body);
     const { firstName, lastName, email, phone, password } = req.body;
     if (!firstName || !lastName || !email || !phone || !password) {
         return next(new ErrorHandler("Please fill all required fields!", 400));
@@ -55,7 +53,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
         user.otpExpiry = Date.now() + 10 * 60 * 1000; // OTP expires in 10 minutes
         await user.save();
 
-        // In a real app, this would use an SMS service like Twilio
+        // This will use an SMS service Twilio
         await sendOtp(user.phone, otp);
 
         res.status(200).json({

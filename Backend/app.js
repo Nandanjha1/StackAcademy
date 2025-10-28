@@ -1,9 +1,11 @@
 import express from "express";
-import { dbConnection } from "./database/dbConnection.js";
 import { config } from "dotenv";
+config({ path: "./config/config.env" });
+import { dbConnection } from "./database/dbConnection.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import codeEditorApi from "./models/codeEditorApi.js";
+// import "./config/passport.js";
 // import fileUpload from "express-fileupload";
 import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./routes/messageRouter.js";
@@ -11,7 +13,6 @@ import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoutes.js";
 
 const app = express();
-config({ path: "./config/config.env" });
 
 app.use(
   cors({

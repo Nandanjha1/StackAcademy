@@ -15,6 +15,7 @@ import DarkVeil from '@/Particles';
 import CourseDetails from '@/Sections/Course/CourseDetails';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import CourseManagement from './Dashboard/CourseManagement';
+import AuthSuccess from './Pages/AuthSuccess';
 
 const App = () => {
   const location = useLocation();
@@ -47,6 +48,7 @@ const App = () => {
           } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path='/auth-success' element={<AuthSuccess />} />
           <Route path='/courseDetails/:courseId' element={<CourseDetails />} />
           <Route path="/courses" element={<MainContent />} />
           <Route path="/sendmessage" element={<MessageForm />} />
