@@ -62,7 +62,7 @@ export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
   const studentCount = await User.countDocuments({ role: "Student" });
   const mentorCount = await User.countDocuments({ role: "Mentor" });
   const adminCount = await User.countDocuments({ role: "Admin" });
-  const totalMessage = await messages.countDocuments();
+  // const totalMessage = await messages.countDocuments();
 
   // Fetch lists of users for management panels
   const students = await User.find({ role: "Student" }).select("-password");
@@ -83,7 +83,7 @@ export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
       adminCount,
       courseCount: courseCount,
       totalRevenue: 0,
-      totalMessage,
+      totalMessage: 0,
     },
     lists: {
       students,

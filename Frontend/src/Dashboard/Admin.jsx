@@ -66,7 +66,7 @@ const AdminPanel = () => {
     }
 
     return (
-        <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
+        <div className="container mx-auto p-6 bg-sky-400 min-h-screen">
             <Navbar />
             <div className="space-y-8">
                 <h2 className="text-3xl font-bold text-gray-800">Welcome, {user.firstName}!</h2>
@@ -87,7 +87,7 @@ const AdminPanel = () => {
 
                     <div className="bg-orange-500 p-6 rounded-xl text-white shadow-lg"><h3 className="font-semibold">Total Revenue</h3><p className="text-3xl font-bold">₹{stats.totalRevenue}</p></div>
 
-                    <div className="bg-indigo-800 p-6 rounded-xl text-white shadow-lg cursor-pointer transition-transform transform hover:scale-105" onClick={() => navigate("/admin/messages")}>
+                    <div className="bg-indigo-800 p-6 rounded-xl text-white shadow-lg cursor-pointer transition-transform transform hover:scale-105" onClick={() => navigate("/admin/message")}>
                         <h3 className="font-semibold">Total Messages</h3>
                         <p className="text-3xl font-bold">{stats.totalMessage}</p>
                     </div>

@@ -16,6 +16,8 @@ import CourseDetails from '@/Sections/Course/CourseDetails';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import CourseManagement from './Dashboard/CourseManagement';
 import AuthSuccess from './Pages/AuthSuccess';
+import ShowMessage from './Dashboard/ShowMessage';
+import AboutUs from './Sections/AboutUs';
 
 const App = () => {
   const location = useLocation();
@@ -33,7 +35,7 @@ const App = () => {
   const shouldHide = pathsToHideNavbarAndFooter.some(path => location.pathname.startsWith(path));
 
   return (
-    <div className="bg-secondary text-foreground">
+    <div className="bg-sky-400 text-foreground">
       {!shouldHide && <Navbar />}
 
       <main className="flex-grow">
@@ -50,9 +52,11 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path='/auth-success' element={<AuthSuccess />} />
           <Route path='/courseDetails/:courseId' element={<CourseDetails />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/courses" element={<MainContent />} />
           <Route path="/sendmessage" element={<MessageForm />} />
           <Route path="/admin/courses" element={<CourseManagement />} />
+          <Route path="/admin/message" element={<ShowMessage />} />
 
           {/* --- PROTECTED ROUTES --- */}
           <Route 
