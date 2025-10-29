@@ -28,6 +28,7 @@ const messageSchema = new mongoose.Schema({
         required: true,
         minLength: [10, "Message Must Contain At Least 10 Characters!"],
     },
-});
+    isRead: { type: Boolean, default: false },
+}, { timestamps: true });
 
 export const Message = mongoose.model("Message", messageSchema);

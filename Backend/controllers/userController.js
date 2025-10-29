@@ -1,4 +1,5 @@
 import { User } from "../models/userSchema.js";
+import { Message } from "../models/messageSchema.js";
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/error.js";
 import fs from "fs/promises"; // Use the promise-based version of fs
@@ -38,38 +39,38 @@ export const registerByAdmin = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// --- ADD THIS NEW FUNCTION ---
 // Get Dashboard Stats - Admin Only
 export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
-
   let courseCount = 0;
+
   try {
-    // Construct a reliable path to your data directory
+    // Path to the frontend courses file
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
-    const coursesDirectoryPath = path.resolve(__dirname, '../../data/courses');
+    const coursesFilePath = path.resolve(__dirname, '../../Frontend/src/data/courses.jsx');
 
-    // Read all files in the directory
-    const files = await fs.readdir(coursesDirectoryPath);
-    // The number of courses is the number of files
-    courseCount = files.length;
+    // Read file content
+    const fileContent = await fs.readFile(coursesFilePath, 'utf-8');
+
+    // Match all course objects using regex pattern for `{ id:`
+    const matches = fileContent.match(/id:\s*\d+/g);
+    courseCount = matches ? matches.length : 0;
   } catch (error) {
-    console.error("Could not read courses directory. Defaulting to 0.", error.code);
-    // If the directory doesn't exist or there's an error, we'll just send 0.
+    console.error("Could not read courses file. Defaulting to 0.", error.message);
     courseCount = 0;
   }
-  // Fetch counts for each role
+
+  // Count users and messages
   const studentCount = await User.countDocuments({ role: "Student" });
   const mentorCount = await User.countDocuments({ role: "Mentor" });
   const adminCount = await User.countDocuments({ role: "Admin" });
-  // const totalMessage = await messages.countDocuments();
+  const totalMessage = await Message.countDocuments();
 
-  // Fetch lists of users for management panels
+  // Lists for management panels
   const students = await User.find({ role: "Student" }).select("-password");
   const mentors = await User.find({ role: "Mentor" }).select("-password");
   const admins = await User.find({ role: "Admin" }).select("-password");
 
-  // For "Recent Activity", fetch the last 5 registered users regardless of role
   const recentActivity = await User.find({})
     .sort({ createdAt: -1 })
     .limit(5)
@@ -81,9 +82,9 @@ export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
       studentCount,
       mentorCount,
       adminCount,
-      courseCount: courseCount,
+      courseCount,
       totalRevenue: 0,
-      totalMessage: 0,
+      totalMessage,
     },
     lists: {
       students,

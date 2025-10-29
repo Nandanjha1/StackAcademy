@@ -12,13 +12,13 @@ const Mentor = () => {
         specialization: "Full-Stack Development",
         bio: "Experienced developer with a passion for mentoring new talent. Specializing in React, Node.js, and database design.",
         mentees: [
-            { id: 1, name: "Alice Johnson", progress: 85, lastSession: "2 days ago" },
-            { id: 2, name: "Bob Smith", progress: 60, lastSession: "1 week ago" },
-            { id: 3, name: "Charlie Brown", progress: 95, lastSession: "5 days ago" },
+            { id: 1, name: "Abhishek Kumar", progress: 85, lastSession: "2 days ago" },
+            { id: 2, name: "Dikshit Singh", progress: 60, lastSession: "1 week ago" },
+            { id: 3, name: "Varun Sharma", progress: 95, lastSession: "5 days ago" },
         ],
         upcomingSessions: [
-            { id: 101, mentee: "Alice Johnson", time: "Today, 4:00 PM", topic: "React Hooks deep dive" },
-            { id: 102, mentee: "Charlie Brown", time: "Tomorrow, 10:00 AM", topic: "Node.js API security" },
+            { id: 101, mentee: "Nandan Kumar", time: "Today, 4:00 PM", topic: "React Hooks deep dive" },
+            { id: 102, mentee: "Mahesh Kumar", time: "Tomorrow, 10:00 AM", topic: "Node.js API security" },
         ],
         stats: {
             totalMentees: 5,

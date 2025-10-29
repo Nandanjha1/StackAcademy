@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from "motion/react";
-// import courseDetails from './Course/courseDetails';
 import { useNavigate } from 'react-router-dom';
 import courses from '../data/courses';
 
@@ -10,8 +9,8 @@ const cardVariants = {
     y: 300,
   },
   onscreen: {
-    y: 50,
-    rotate: -10,
+    y: 10,
+    rotate: 0,
     transition: {
       type: "spring",
       bounce: 0.4,
@@ -75,7 +74,7 @@ function AnimatedCourseCard({ course, i, hueA, hueB }) {
       whileInView="onscreen"
       viewport={{ amount: 0.8 }}
     >
-      <div style={{ ...splash, background, pointerEvents: "none", zIndex: 0  }} />
+      <div style={{ ...splash, background, pointerEvents: "none", zIndex: 0 }} />
       <motion.div style={{ ...card, zIndex: 1 }} variants={cardVariants} className="card">
         <img
           src={course.imageUrl || `https://placehold.co/400x200/2a2a2a/ffffff?text=${course.title.replace(/\s/g, '+')}`}

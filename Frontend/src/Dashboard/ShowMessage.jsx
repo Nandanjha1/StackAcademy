@@ -1,66 +1,61 @@
 import React, { useState, useEffect } from 'react';
 
 const ShowMessage = () => {
-    // 1. State to manage the message data and loading status
-    const [message, setMessage] = useState(null);
+    const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // The API endpoint we're targeting
-    const API_ENDPOINT = "/api/v1/message/getall";
-
-    // 2. useEffect hook to handle the real data fetching
+    // 🔹 Fetch messages
     useEffect(() => {
         const fetchMessageFromAPI = async () => {
             setIsLoading(true);
-            setError(null);
-            setMessage(null);
-
             try {
-                // Perform the actual network request
-                const response = await fetch(API_ENDPOINT, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        // You might need an Authorization header here for protected APIs
-                        // 'Authorization': `Bearer ${yourAuthToken}`
-                    },
+                const response = await fetch("/api/v1/message/getall", {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
                 });
 
-                // Check for HTTP errors (e.g., 404, 500)
-                if (!response.ok) {
-                    // Throw an error with the status text
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-                // Parse the JSON data from the response body
                 const data = await response.json();
-
-                // Assuming the API returns an array of messages and we just want the first one
-                if (data && data.length > 0) {
-                    // Update the state with the first message found
-                    setMessage(data[0]);
-                } else {
-                    // Handle the case where the fetch succeeds but the array is empty
-                    setMessage(null);
-                }
-
+                setMessages(data?.messages || []);
             } catch (err) {
-                // Catch network errors (e.g., failed to connect) or the HTTP error thrown above
-                console.error("Failed to fetch message from API:", err);
-                setError(`Failed to load message: ${err.message}`);
-                setMessage(null);
+                console.error("Failed to fetch message:", err);
+                setError(`Failed to load messages: ${err.message}`);
             } finally {
-                // Stop loading regardless of success or failure
                 setIsLoading(false);
             }
         };
 
         fetchMessageFromAPI();
-    }, []); // Empty dependency array ensures this runs only once on mount
+    }, []);
 
-    // 3. Conditional Rendering Logic (Tailwind CSS)
+    // 🔹 Toggle Read/Unread Status
+    const toggleReadStatus = async (id, currentStatus) => {
+        try {
+            const response = await fetch(`/api/v1/message/markreadtoggle/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ isRead: !currentStatus }),
+            });
 
+            if (!response.ok) throw new Error("Failed to update message status");
+
+            // Update state locally
+            setMessages((prev) =>
+                prev.map((msg) =>
+                    msg._id === id ? { ...msg, isRead: !currentStatus } : msg
+                )
+            );
+        } catch (err) {
+            console.error("Error updating read status:", err);
+            alert("Something went wrong while updating message status.");
+        }
+    };
+
+    // 🔸 Loading
     if (isLoading) {
         return (
             <div className="max-w-md mx-auto p-6 mt-10 rounded-lg shadow-xl bg-yellow-50 border-l-4 border-yellow-500 flex items-center justify-center space-x-3">
@@ -73,6 +68,7 @@ const ShowMessage = () => {
         );
     }
 
+    // 🔸 Error
     if (error) {
         return (
             <div className="max-w-md mx-auto p-6 mt-10 rounded-lg shadow-xl bg-red-100 border-l-4 border-red-600">
@@ -82,7 +78,8 @@ const ShowMessage = () => {
         );
     }
 
-    if (!message) {
+    // 🔸 No messages
+    if (!messages.length) {
         return (
             <div className="max-w-md mx-auto p-6 mt-10 rounded-lg shadow-xl bg-gray-100 border-l-4 border-gray-400">
                 <p className="text-lg text-gray-700">No messages found in the database.</p>
@@ -90,29 +87,44 @@ const ShowMessage = () => {
         );
     }
 
-    // 4. Final Interface Rendering
+    // 🔸 Render messages
     return (
-        <div className="max-w-md mx-auto p-6 mt-10 rounded-xl shadow-2xl bg-white border-l-8 border-blue-600 transition-all duration-300 hover:shadow-3xl">
-            <header className="pb-3 border-b border-gray-200 mb-4">
-                <h1 className="text-2xl font-extrabold text-gray-800">{message.title || "No Title"}</h1>
-                <span className="text-sm text-gray-500 mt-1 block">
-                    {/* Display timestamp if available, otherwise show a default */}
-                    Received: {message.timestamp ? new Date(message.timestamp).toLocaleString() : 'Unknown Time'}
-                </span>
-            </header>
-
-            <div className="text-gray-700 leading-relaxed mb-6">
-                <p>{message.content || "Message content is empty."}</p>
-            </div>
-
-            <footer className="flex justify-end pt-4 border-t border-gray-100">
-                <button
-                    className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-150"
-                    onClick={() => console.log(`Message ${message.id} acknowledged`)}
+        <div className="flex flex-wrap gap-6 p-8 justify-center">
+            {messages.map((msg) => (
+                <div
+                    key={msg._id}
+                    className={`p-6 w-80 rounded-xl shadow-2xl transition-all duration-300 ${
+                        msg.isRead ? "bg-gray-200 border-l-8 border-green-600" : "bg-purple-500 border-l-8 border-blue-600"
+                    }`}
                 >
-                    Acknowledge
-                </button>
-            </footer>
+                    <header className="pb-3 border-b border-gray-300 mb-4">
+                        <h1 className="text-xl font-bold text-gray-900">Received By:</h1>
+                        <p>{msg.firstName} {msg.lastName || "No Name"}</p>
+                        <p>{msg.email}</p>
+                        <p>{msg.phone}</p>
+                        <span className="text-sm text-gray-700 mt-1 block">
+                            {msg.createdAt
+                                ? new Date(msg.createdAt).toLocaleString()
+                                : "Unknown Time"}
+                        </span>
+                    </header>
+
+                    <div className="leading-relaxed mb-4">
+                        <p>{msg.message || "Message content is empty."}</p>
+                    </div>
+
+                    <button
+                        onClick={() => toggleReadStatus(msg._id, msg.isRead)}
+                        className={`${
+                            msg.isRead
+                                ? "bg-yellow-600 hover:bg-yellow-700"
+                                : "bg-blue-600 hover:bg-blue-700"
+                        } text-white px-4 py-2 rounded-lg shadow-md transition-all`}
+                    >
+                        {msg.isRead ? "Mark as Unread" : "Mark as Read"}
+                    </button>
+                </div>
+            ))}
         </div>
     );
 };
