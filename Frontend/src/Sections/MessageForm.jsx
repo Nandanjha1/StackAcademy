@@ -14,7 +14,7 @@ const MessageForm = () => {
     try {
       await axios
         .post(
-          "http://localhost:4000/api/v1/message/send", //Url Insert from database
+          "http://localhost:4000/api/v1/message/send",
           { firstName, lastName, email, phone, message },
           {
             withCredentials: true,
@@ -37,7 +37,7 @@ const MessageForm = () => {
   return (
     <>
       <div className="p-6 lg:p-12 shadow-lg rounded-lg relative overflow-hidden">
-        <h2 className="text-3xl font-serif font-bold text-center text-gray-800 m-10">Send Us A Message</h2>
+        <h2 className="text-3xl font-serif font-bold text-center text-sky-300 m-10">Send Us A Message</h2>
         <form onSubmit={handleMessage} className="space-y-6 m-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
@@ -83,15 +83,10 @@ const MessageForm = () => {
               type="submit"
               className="px-8 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 ease-in-out"
             >
-              Send
+              Send Us
             </button>
           </div>
         </form>
-        <img
-          src="/images/Vector.png"
-          alt="vector"
-          className="absolute bottom-0 right-0 opacity-50 w-80 h-80 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain"
-        />
       </div>
     </>
   );

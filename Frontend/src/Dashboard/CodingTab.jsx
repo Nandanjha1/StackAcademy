@@ -29,7 +29,7 @@ const codingProblems = [
 const CodingTab = () => (
     <div className="space-y-6">
         <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-gray-800">Coding Practice</h2>
+            <h2 className="text-2xl font-bold text-gray-100">Coding Practice</h2>
             <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
                 <option>All Difficulties</option>
                 <option>Easy</option>

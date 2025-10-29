@@ -5,24 +5,24 @@ const Footer = () => {
     return (
         <footer className="bg-gray-900 text-white py-10">
             <div className="mb-14 px-6 md:px-16 pb-8 border-b border-gray-700 flex flex-col md:flex-row items-center md:justify-between">
-                <h1 className="text-2xl font-bold text-lime-400 mb-4 md:mb-0">Follow Us</h1>
+                <h1 className="text-2xl font-bold text-sky-400 mb-4 md:mb-0">Follow Us</h1>
                 <div className="flex flex-wrap justify-center gap-4">
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:text-lime-300 transition duration-200">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300 transition duration-200">
                         <Facebook />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:text-lime-300 transition duration-200">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300 transition duration-200">
                         <Instagram />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:text-lime-300 transition duration-200">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300 transition duration-200">
                         <Twitter />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:text-lime-300 transition duration-200">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300 transition duration-200">
                         <Linkedin />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:text-lime-300 transition duration-200">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300 transition duration-200">
                         <Youtube />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:text-lime-300 transition duration-200">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300 transition duration-200">
                         <Github />
                     </a>
                 </div>
@@ -32,7 +32,7 @@ const Footer = () => {
 
                 {/* Logo & Description */}
                 <div>
-                    <h2 className="text-2xl font-bold text-lime-400 mb-2">StackAcademy</h2>
+                    <h2 className="text-2xl font-bold text-sky-400 mb-2">StackAcademy</h2>
                     <p className="text-gray-400">
                         Empowering students with the best tech education. Build skills, projects, and a future in full-stack development.
                     </p>
@@ -42,10 +42,10 @@ const Footer = () => {
                 <div>
                     <h3 className="text-xl font-semibold mb-2 text-white">Quick Links</h3>
                     <ul className="space-y-1 text-gray-400">
-                        <li><a href="/" className="hover:text-lime-400">Home</a></li>
-                        <li><a href="/courses" className="hover:text-lime-400">Courses</a></li>
-                        <li><a href="*" className="hover:text-lime-400">About Us</a></li>
-                        <li><a href="sendmessage" className="hover:text-lime-400">Contact</a></li>
+                        <li><a href="/" className="hover:text-sky-400">Home</a></li>
+                        <li><a href="/courses" className="hover:text-sky-400">Courses</a></li>
+                        <li><a href="*" className="hover:text-sky-400">About Us</a></li>
+                        <li><a href="sendmessage" className="hover:text-sky-400">Contact</a></li>
                     </ul>
                 </div>
 
@@ -66,7 +66,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="text-center text-gray-500 text-sm mt-10 border-t border-gray-700 pt-4">
+            <div className="text-center text-gray-400 text-sm mt-10 border-t border-gray-700 pt-4">
                 © {new Date().getFullYear()} StackAcademy. All rights reserved.
             </div>
         </footer>

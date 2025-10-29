@@ -51,7 +51,7 @@ const CourseManagement = () => {
 
             setShowModal(false);
             resetForm();
-            fetchCourses(); // Refresh list
+            fetchCourses();
         } catch (error) {
             toast.error(error.response?.data?.message || `Failed to ${isEditing ? 'update' : 'add'} course.`);
         }
@@ -63,7 +63,7 @@ const CourseManagement = () => {
             try {
                 await axios.delete(`/api/v1/course/delete/${id}`, { withCredentials: true });
                 toast.success("Course deleted successfully!");
-                fetchCourses(); // Refresh list
+                fetchCourses();
             } catch (error) {
                 toast.error(error.response?.data?.message || "Failed to delete course.");
             }
@@ -98,11 +98,11 @@ const CourseManagement = () => {
     }
 
     return (
-        <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
+        <div className="container mx-auto p-6 bg-stack-dark min-h-screen">
             <Navbar />
             <div className="space-y-8">
                 <div className="flex justify-between items-center">
-                    <h2 className="text-3xl font-bold text-gray-800">Manage Courses</h2>
+                    <h2 className="text-3xl font-bold text-gray-100">Manage Courses</h2>
                     <button onClick={openAddModal} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center shadow">
                         <Plus className="h-4 w-4 mr-2" /> Add New Course
                     </button>

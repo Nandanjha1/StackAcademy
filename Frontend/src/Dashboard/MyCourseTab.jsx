@@ -20,7 +20,7 @@ const setActiveTab = () => {};
 
 const MyCoursesTab = () => (
     <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-gray-800">My Enrolled Courses</h2>
+        <h2 className="text-2xl font-bold text-gray-100">My Enrolled Courses</h2>
         {enrolledCourses.length === 0 ? (
             <div className="text-center py-12">
                 <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />

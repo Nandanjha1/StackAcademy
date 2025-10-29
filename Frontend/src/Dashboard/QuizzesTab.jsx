@@ -3,7 +3,7 @@ import { Trophy, Clock, Users } from "lucide-react";
 
 const QuizzesTab = ({ quizzes, onQuizSelect }) => (
     <div className="space-y-6">
-        <h2 className="text-2xl font-bold text-gray-800">Available Quizzes</h2>
+        <h2 className="text-2xl font-bold text-gray-100">Available Quizzes</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {quizzes.map((quiz) => (
                 <div key={quiz.id} className="bg-white rounded-xl shadow-lg p-6">

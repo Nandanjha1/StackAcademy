@@ -35,7 +35,7 @@ const App = () => {
   const shouldHide = pathsToHideNavbarAndFooter.some(path => location.pathname.startsWith(path));
 
   return (
-    <div className="bg-sky-400 text-foreground">
+    <div className="bg-stack-dark text-foreground">
       {!shouldHide && <Navbar />}
 
       <main className="flex-grow">
@@ -45,6 +45,7 @@ const App = () => {
             <>
               <div className='w-full relative top-12 h-screen'><DarkVeil /></div>
               <MainContent />
+              <AboutUs />
               <MessageForm />
             </>
           } />
