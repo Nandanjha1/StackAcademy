@@ -12,7 +12,7 @@ import Mentor from '@/Dashboard/Mentor';
 import Admin from '@/Dashboard/Admin';
 import CodeEditor from '@/Dashboard/CodeEditor';
 import DarkVeil from '@/Particles';
-import CourseDetails from '@/Sections/Course/courseDetails';
+import CourseDetails from '@/Sections/Course/courseDetails.jsx';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import CourseManagement from './Dashboard/CourseManagement';
 import AuthSuccess from './Pages/AuthSuccess';
